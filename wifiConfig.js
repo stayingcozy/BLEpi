@@ -61,6 +61,7 @@ function restartWifiInterface() {
           return;
         }
         console.log('Network interface restarted successfully.');
+        return;
       });
     }, 3000);
   });
