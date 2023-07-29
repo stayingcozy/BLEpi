@@ -46,7 +46,7 @@ function restartWifiInterface() {
 //     });
 //   });
   // Bring the interface down
-  exec('ip link set eth0 down', (error, stdout, stderr) => {
+  exec('ip link set wlan0 down', (error, stdout, stderr) => {
     if (error) {
       console.error(`Error while bringing the interface down: ${error.message}`);
       return;
@@ -55,7 +55,7 @@ function restartWifiInterface() {
     // Add a _ second delay
     setTimeout(() => {
       // Bring the interface back up
-      exec('ip link set eth0 up', (error, stdout, stderr) => {
+      exec('ip link set wlan0 up', (error, stdout, stderr) => {
         if (error) {
           console.error(`Error while bringing the interface up: ${error.message}`);
           return;
