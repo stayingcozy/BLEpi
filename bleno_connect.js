@@ -10,13 +10,31 @@ const writeCharacteristicUuid = '0cb87266-9c1e-4e8b-a317-b742364e03b4';
 //   value: Buffer.from('Hello from Raspberry Pi'),
 // });
 
+const wifiCredentials = {
+  ssid: '',
+  password: '',
+};
+
 const writeCharacteristic = new bleno.Characteristic({
   uuid: writeCharacteristicUuid,
   properties: ['write'],
+  // onWriteRequest: (data, offset, withoutResponse, callback) => {
+  //   // Handle the data received from the web app
+  //   const receivedMessage = data.toString('utf-8');
+  //   console.log('Received message:', receivedMessage);
+
+  //   // You can now process the receivedMessage (e.g., configure Wi-Fi settings)
+
+  //   // Send a response back to the web app (optional)
+  //   const response = 'Message received by Raspberry Pi';
+  //   callback(bleno.Characteristic.RESULT_SUCCESS, Buffer.from(response, 'utf-8'));
+  // },
   onWriteRequest: (data, offset, withoutResponse, callback) => {
     // Handle the data received from the web app
-    const receivedMessage = data.toString('utf-8');
-    console.log('Received message:', receivedMessage);
+    const receivedMessage = data.toString('utf-8').split(':');
+    wifiCredentials.ssid = receivedMessage[0];
+    wifiCredentials.password = receivedMessage[1];
+    console.log('Received message:', wifiCredentials);
 
     // You can now process the receivedMessage (e.g., configure Wi-Fi settings)
 
