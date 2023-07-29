@@ -1,5 +1,6 @@
 const bleno = require('bleno');
 const wifiConfig = require('./wifiConfig');
+const wifiCheck = require('./wifiStatus');
 
 const myCameraTowerServiceUuid = 'fb0af608-c3ad-41bb-9aba-6d8185f45de7';
 const writeCharacteristicUuid = '0cb87266-9c1e-4e8b-a317-b742364e03b4';
@@ -56,10 +57,16 @@ const notifyCentral = (isConnected) => {
 };
 
 // Simulate WiFi connection
-setTimeout(() => {
-  console.log('Device connected to WiFi');
-  notifyCentral(true); // Notify the central (web app) that the device is connected
-}, 15000); // After 5 seconds, simulate WiFi connection
+// setTimeout(() => {
+//   console.log('Device connected to WiFi');
+//   notifyCentral(true); // Notify the central (web app) that the device is connected
+// }, 15000); // After 5 seconds, simulate WiFi connection
+setInterval( () => {
+  if (wifiCheck.wifiCheck()) {
+    console.log('Device connected to WiFi');
+    notifyCentral(true); // Notify the central (web app) that the device is connected
+  }
+}, 5000);
 
 
 const myCameraTowerService = new bleno.PrimaryService({
