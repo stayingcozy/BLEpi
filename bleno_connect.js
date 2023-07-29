@@ -65,7 +65,7 @@ setInterval( () => {
     }
     // console.log('Result:', result);
   });
-}, 5000);
+}, 3000);
 
 
 const myCameraTowerService = new bleno.PrimaryService({
