@@ -2,20 +2,17 @@ const bleno = require('bleno');
 const wifiConfig = require('./wifiConfig');
 
 const myCameraTowerServiceUuid = 'fb0af608-c3ad-41bb-9aba-6d8185f45de7';
-// const helloCharacteristicUuid = 'c8659212-af91-4ad3-a995-a58d6fd26145';
 const writeCharacteristicUuid = '0cb87266-9c1e-4e8b-a317-b742364e03b4';
-
-// const helloCharacteristic = new bleno.Characteristic({
-//   uuid: helloCharacteristicUuid,
-//   properties: ['read'],
-//   value: Buffer.from('Hello from Raspberry Pi'),
-// });
+const notifyCharacteristicUuid = '53b1b0ed-b315-4665-8b5a-315fc594d84f';
 
 const wifiCredentials = {
   ssid: '',
   psk: '',
   key_mgmt: 'WPA-PSK',
 };
+
+// Function to update the Notify characteristic
+let updateNotifyCharacteristic;
 
 const writeCharacteristic = new bleno.Characteristic({
   uuid: writeCharacteristicUuid,
@@ -37,9 +34,37 @@ const writeCharacteristic = new bleno.Characteristic({
   },
 });
 
+const notifyCharacteristic = new bleno.Characteristic({
+  uuid: notifyCharacteristicUuid,
+  properties: ['notify'],
+  onSubscribe: (maxValueSize, updateValueCallback) => {
+    console.log('Central subscribed to notifications');
+    updateNotifyCharacteristic = updateValueCallback;
+  },
+  onUnsubscribe: () => {
+    console.log('Central unsubscribed from notifications');
+    updateNotifyCharacteristic = null;
+  },
+});
+
+// Function to notify the central (web app)
+const notifyCentral = (isConnected) => {
+  if (updateNotifyCharacteristic) {
+    const data = Buffer.from([isConnected ? 1 : 0]);
+    updateNotifyCharacteristic(data);
+  }
+};
+
+// Simulate WiFi connection
+setTimeout(() => {
+  console.log('Device connected to WiFi');
+  notifyCentral(true); // Notify the central (web app) that the device is connected
+}, 5000); // After 5 seconds, simulate WiFi connection
+
+
 const myCameraTowerService = new bleno.PrimaryService({
   uuid: myCameraTowerServiceUuid,
-  characteristics: [writeCharacteristic], //helloCharacteristicUuid
+  characteristics: [writeCharacteristic, notifyCharacteristic], //helloCharacteristicUuid
 });
 
 bleno.on('stateChange', (state) => {
