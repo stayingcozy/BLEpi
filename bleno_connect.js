@@ -63,7 +63,7 @@ setInterval( () => {
       console.log('Device connected to WiFi');
       notifyCentral(true); // Notify the central (web app) that the device is connected
     }
-    console.log('Result:', result);
+    // console.log('Result:', result);
   });
 }, 5000);
 

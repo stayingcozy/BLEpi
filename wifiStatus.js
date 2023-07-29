@@ -15,10 +15,10 @@ function wifiCheck(callback) {
     const isConnected = !output.includes('ESSID:off/any');
 
     if (isConnected) {
-      console.log('WiFi is connected.');
+    //   console.log('WiFi is connected.');
       callback(1); // WiFi is connected, pass 1 to the callback
     } else {
-      console.log('WiFi is not connected.');
+    //   console.log('WiFi is not connected.');
       callback(0); // WiFi is not connected, pass 0 to the callback
     }
   });
