@@ -1,6 +1,7 @@
 const bleno = require('bleno');
+const writeWifiCredentials = require('./wifiConfig');
 
-import { writeWifiCredentials } from './wifiConfig';
+// import { writeWifiCredentials } from './wifiConfig';
 
 const myCameraTowerServiceUuid = 'fb0af608-c3ad-41bb-9aba-6d8185f45de7';
 // const helloCharacteristicUuid = 'c8659212-af91-4ad3-a995-a58d6fd26145';
