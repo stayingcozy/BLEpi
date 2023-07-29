@@ -1,8 +1,6 @@
 const bleno = require('bleno');
 const wifiConfig = require('./wifiConfig');
 
-// import { writeWifiCredentials } from './wifiConfig';
-
 const myCameraTowerServiceUuid = 'fb0af608-c3ad-41bb-9aba-6d8185f45de7';
 // const helloCharacteristicUuid = 'c8659212-af91-4ad3-a995-a58d6fd26145';
 const writeCharacteristicUuid = '0cb87266-9c1e-4e8b-a317-b742364e03b4';
@@ -22,17 +20,6 @@ const wifiCredentials = {
 const writeCharacteristic = new bleno.Characteristic({
   uuid: writeCharacteristicUuid,
   properties: ['write'],
-  // onWriteRequest: (data, offset, withoutResponse, callback) => {
-  //   // Handle the data received from the web app
-  //   const receivedMessage = data.toString('utf-8');
-  //   console.log('Received message:', receivedMessage);
-
-  //   // You can now process the receivedMessage (e.g., configure Wi-Fi settings)
-
-  //   // Send a response back to the web app (optional)
-  //   const response = 'Message received by Raspberry Pi';
-  //   callback(bleno.Characteristic.RESULT_SUCCESS, Buffer.from(response, 'utf-8'));
-  // },
   onWriteRequest: (data, offset, withoutResponse, callback) => {
     // Handle the data received from the web app
     const receivedMessage = data.toString('utf-8').split(':');
