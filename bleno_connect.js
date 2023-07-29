@@ -1,5 +1,5 @@
 const bleno = require('bleno');
-const writeWifiCredentials = require('./wifiConfig');
+const wifiConfig = require('./wifiConfig');
 
 // import { writeWifiCredentials } from './wifiConfig';
 
@@ -42,7 +42,7 @@ const writeCharacteristic = new bleno.Characteristic({
 
     // Process the receivedMessage (e.g., configure Wi-Fi settings)
     // and restart pi for settings to take hold and connect
-    writeWifiCredentials(wifiCredentials);
+    wifiConfig.writeWifiCredentials(wifiCredentials);
 
     // Send a response back to the web app (optional)
     const response = 'Message received by Raspberry Pi';
