@@ -24,7 +24,7 @@ function writeWifiCredentials(wifiNetwork) {
         console.error('Error writing wpa_supplicant.conf:', err);
         } else {
         console.log('wpa_supplicant.conf file created/updated successfully!');
-        restartWiFiInterface()
+        restartWifiInterface()
         }
     });
 }
