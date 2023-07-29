@@ -1,14 +1,14 @@
 const bleno = require('bleno');
 
-const myCameraTowerServiceUuid = 'd804b643-6ce7-4e81-9f8a-ce0f699085eb';
-const helloCharacteristicUuid = 'c8659212-af91-4ad3-a995-a58d6fd26145';
-const writeCharacteristicUuid = 'beb5483e-36e1-4688-b7f5-ea07361b26a8';
+const myCameraTowerServiceUuid = 'fb0af608-c3ad-41bb-9aba-6d8185f45de7';
+// const helloCharacteristicUuid = 'c8659212-af91-4ad3-a995-a58d6fd26145';
+const writeCharacteristicUuid = '0cb87266-9c1e-4e8b-a317-b742364e03b4';
 
-const helloCharacteristic = new bleno.Characteristic({
-  uuid: helloCharacteristicUuid,
-  properties: ['read'],
-  value: Buffer.from('Hello from Raspberry Pi'),
-});
+// const helloCharacteristic = new bleno.Characteristic({
+//   uuid: helloCharacteristicUuid,
+//   properties: ['read'],
+//   value: Buffer.from('Hello from Raspberry Pi'),
+// });
 
 const writeCharacteristic = new bleno.Characteristic({
   uuid: writeCharacteristicUuid,
@@ -28,7 +28,7 @@ const writeCharacteristic = new bleno.Characteristic({
 
 const myCameraTowerService = new bleno.PrimaryService({
   uuid: myCameraTowerServiceUuid,
-  characteristics: [helloCharacteristic, writeCharacteristic],
+  characteristics: [writeCharacteristic], //helloCharacteristicUuid
 });
 
 bleno.on('stateChange', (state) => {
