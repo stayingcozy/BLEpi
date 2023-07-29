@@ -62,7 +62,9 @@ const notifyCentral = (isConnected) => {
 //   notifyCentral(true); // Notify the central (web app) that the device is connected
 // }, 15000); // After 5 seconds, simulate WiFi connection
 setInterval( () => {
-  if (wifiCheck.wifiCheck()) {
+  wifi = wifiCheck.wifiCheck()
+  console.log(`Wifi status: ${wifi}`)
+  if (wifi) {
     console.log('Device connected to WiFi');
     notifyCentral(true); // Notify the central (web app) that the device is connected
   }
