@@ -45,25 +45,33 @@ function restartWifiInterface() {
 //       console.log('WiFi interface restarted successfully!');
 //     });
 //   });
-  // Bring the interface down
-  exec('ip link set wlan0 down', (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error while bringing the interface down: ${error.message}`);
-      return;
-    }
+//   // Bring the interface down
+//   exec('ip link set wlan0 down', (error, stdout, stderr) => {
+//     if (error) {
+//       console.error(`Error while bringing the interface down: ${error.message}`);
+//       return;
+//     }
 
-    // Add a _ second delay
-    setTimeout(() => {
-      // Bring the interface back up
-      exec('ip link set wlan0 up', (error, stdout, stderr) => {
-        if (error) {
-          console.error(`Error while bringing the interface up: ${error.message}`);
-          return;
-        }
-        console.log('Network interface restarted successfully.');
-      });
-    }, 3000);
-  });
-}
+//     // Add a _ second delay
+//     setTimeout(() => {
+//       // Bring the interface back up
+//       exec('ip link set wlan0 up', (error, stdout, stderr) => {
+//         if (error) {
+//           console.error(`Error while bringing the interface up: ${error.message}`);
+//           return;
+//         }
+//         console.log('Network interface restarted successfully.');
+//       });
+//     }, 3000);
+//   });
+// }
+  // Reconfigure wifi
+    exec('wpa_cli -i wlan0 reconfigure', (error, stdout, stderr) => {
+    if (error) {
+        console.error(`Error while reconfigure: ${error.message}`);
+        return;
+    }
+    })
+};
 
 module.exports = { writeWifiCredentials };
