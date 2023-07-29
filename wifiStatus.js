@@ -1,5 +1,4 @@
 const { exec } = require('child_process');
-const { isContext } = require('vm');
 
 function wifiCheck() {
     // Check wifi status
@@ -25,12 +24,12 @@ function wifiCheck() {
         // WiFi is connected
         // Update your boolean value here
         console.log('WiFi is connected.');
-        return 1;
+        return isConnected;
       } else {
         // WiFi is not connected
         // Update your boolean value here
         console.log('WiFi is not connected.');
-        return 0;
+        return isConnected;
       }
     });
   }
