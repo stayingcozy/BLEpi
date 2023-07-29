@@ -1,4 +1,5 @@
 const sudo = require('sudo-prompt');
+const path = require('path');
 const { wifiCheck } = require('./wifiStatus');
 
 // Main script
@@ -7,7 +8,8 @@ wifiCheck((result) => {
   if (result === 1) {
     // WiFi is connected, run the Go program (main)
     const { spawn } = require('child_process');
-    const mainProcess = spawn('~/goPetCamera/main', [], {
+    const mainPath = path.join(__dirname, 'goPetCamera', 'main');
+    const mainProcess = spawn(mainPath, [], {
       stdio: 'inherit',
     });
 
@@ -27,10 +29,11 @@ wifiCheck((result) => {
       console.log(`BLE script output: ${stdout}`);
       // When the BLE script exits, start the main Go program
       const { spawn } = require('child_process');
-      const mainProcess = spawn('~/goPetCamera/main', [], {
+      const mainPath = path.join(__dirname, 'goPetCamera', 'main');
+      const mainProcess = spawn(mainPath, [], {
         stdio: 'inherit',
       });
-
+      
       mainProcess.on('close', (code) => {
         console.log(`Main process exited with code ${code}`);
       });
