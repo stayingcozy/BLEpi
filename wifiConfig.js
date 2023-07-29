@@ -2,10 +2,9 @@ const fs = require('fs');
 const { exec } = require('child_process');
 
 function writeWifiCredentials(wifiNetwork) {
-    
+
 // Create the content for the wpa_supplicant.conf file
-const wpaConfigContent = `
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+const wpaConfigContent = `ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 country=US
 
