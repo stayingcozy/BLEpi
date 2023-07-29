@@ -59,7 +59,7 @@ const notifyCentral = (isConnected) => {
 setTimeout(() => {
   console.log('Device connected to WiFi');
   notifyCentral(true); // Notify the central (web app) that the device is connected
-}, 5000); // After 5 seconds, simulate WiFi connection
+}, 15000); // After 5 seconds, simulate WiFi connection
 
 
 const myCameraTowerService = new bleno.PrimaryService({
