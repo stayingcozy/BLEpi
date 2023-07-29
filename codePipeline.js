@@ -9,7 +9,7 @@ wifiCheck((result) => {
   if (result === 1) {
     // WiFi is connected, run the Go program (main)
     const { spawn } = require('child_process');
-    const mainPath = path.join(getUserHome(), 'goPetCamera', 'main');
+    const mainPath = path.join(os.getUserHome(), 'goPetCamera', 'main');
     const mainProcess = spawn(mainPath, [], {
       stdio: 'inherit',
     });
@@ -31,7 +31,7 @@ wifiCheck((result) => {
       console.log(`BLE script output: ${stdout}`);
       // When the BLE script exits, start the main Go program
       const { spawn } = require('child_process');
-      const mainPath = path.join(getUserHome(), 'goPetCamera', 'main');
+      const mainPath = path.join(os.getUserHome(), 'goPetCamera', 'main');
       const mainProcess = spawn(mainPath, [], {
         stdio: 'inherit',
       });
