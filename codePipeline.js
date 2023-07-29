@@ -22,7 +22,8 @@ wifiCheck((result) => {
     const options = {
       name: 'MyApp', // Provide your app name or identifier here
     };
-    sudo.exec('node bleno_connect.js', options, (error, stdout, stderr) => {
+    blepi_path = path.join(__dirname,"bleno_connect.js");
+    sudo.exec('node '+blepi_path, options, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error while executing BLE script with sudo: ${error.message}`);
         return;
