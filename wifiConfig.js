@@ -1,7 +1,7 @@
 const fs = require('fs');
+const { exec } = require('child_process');
 
 function writeWifiCredentials(wifiNetwork) {
-    
     // Create the content for the wpa_supplicant.conf file
     const wpaConfigContent = `
     ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -29,14 +29,21 @@ function writeWifiCredentials(wifiNetwork) {
     });
 }
 
-function restartWiFiInterface() {
-  const { exec } = require('child_process');
-  exec('sudo ifdown wlan0 && sudo ifup wlan0', (err, stdout, stderr) => {
+function restartWifiInterface() {
+  exec('sudo ip link set wlan0 down', (err, stdout, stderr) => {
     if (err) {
-      console.error('Error restarting WiFi interface:', err);
-    } else {
-      console.log('WiFi interface restarted');
+      console.error(`Error stopping WiFi interface: ${err}`);
+      return;
     }
+
+    exec('sudo ip link set wlan0 up', (err, stdout, stderr) => {
+      if (err) {
+        console.error(`Error starting WiFi interface: ${err}`);
+        return;
+      }
+
+      console.log('WiFi interface restarted successfully!');
+    });
   });
 }
 
