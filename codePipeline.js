@@ -7,7 +7,7 @@ wifiCheck((result) => {
   if (result === 1) {
     // WiFi is connected, run the Go program (main)
     const { spawn } = require('child_process');
-    const mainProcess = spawn('./main', [], {
+    const mainProcess = spawn('~/goPetCamera/main', [], {
       stdio: 'inherit',
     });
 
@@ -19,7 +19,7 @@ wifiCheck((result) => {
     const options = {
       name: 'MyApp', // Provide your app name or identifier here
     };
-    sudo.exec('node ble-script.js', options, (error, stdout, stderr) => {
+    sudo.exec('node bleno_connect.js', options, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error while executing BLE script with sudo: ${error.message}`);
         return;
@@ -27,7 +27,7 @@ wifiCheck((result) => {
       console.log(`BLE script output: ${stdout}`);
       // When the BLE script exits, start the main Go program
       const { spawn } = require('child_process');
-      const mainProcess = spawn('./main', [], {
+      const mainProcess = spawn('~/goPetCamera/main', [], {
         stdio: 'inherit',
       });
 
@@ -36,5 +36,5 @@ wifiCheck((result) => {
       });
     });
   }
-  
+
 });
