@@ -1,5 +1,5 @@
 const bleno = require('bleno');
-const wifiConfig = require('./wifiConfig');
+const { writeWifiCredentials } = require('./wifiConfig');
 const { wifiCheck } = require('./wifiStatus');
 
 const myCameraTowerServiceUuid = 'fb0af608-c3ad-41bb-9aba-6d8185f45de7';
@@ -30,7 +30,7 @@ const writeCharacteristic = new bleno.Characteristic({
 
     // Process the receivedMessage (e.g., configure Wi-Fi settings)
     // and restart pi for settings to take hold and connect
-    wifiConfig.writeWifiCredentials(wifiCredentials);
+    writeWifiCredentials(wifiCredentials);
 
     // Send a response back to the web app (optional)
     const response = 'Message received by Raspberry Pi';

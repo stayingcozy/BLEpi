@@ -25,6 +25,7 @@ fs.writeFile(wpaConfigFilePath, wpaConfigContent, (err) => {
     } else {
     console.log('wpa_supplicant.conf file created/updated successfully!');
     restartWifiInterface()
+    return
     }
 });
 }
