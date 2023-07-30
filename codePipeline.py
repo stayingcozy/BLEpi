@@ -54,7 +54,7 @@ def main():
             # Change the current working directory to where the 'main' executable is located
             os.chdir(os.path.dirname(go_path))
 
-            print("Now running goPetCamera")
+            print("Now running goPetCamera command: " + main_path)
 
             subprocess.run([main_path], text=True)
 
