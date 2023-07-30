@@ -12,8 +12,6 @@ const wifiCredentials = {
   key_mgmt: 'WPA-PSK',
 };
 
-let isConnectedToWiFi = false;
-
 // Function to update the Notify characteristic
 let updateNotifyCharacteristic;
 
@@ -64,10 +62,6 @@ setInterval( () => {
     if (result) {
       console.log('Device connected to WiFi');
       notifyCentral(true); // Notify the central (web app) that the device is connected
-      isConnectedToWiFi = true;
-    }
-    else {
-      isConnectedToWiFi = false;
     }
     // console.log('Result:', result);
   });
@@ -80,7 +74,7 @@ const myCameraTowerService = new bleno.PrimaryService({
 });
 
 bleno.on('stateChange', (state) => {
-  if (state === 'poweredOn' && !isConnectedToWiFi) {
+  if (state === 'poweredOn') {
     bleno.startAdvertising('MyCameraTower', [myCameraTowerServiceUuid]);
   } else {
     bleno.stopAdvertising();
