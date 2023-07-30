@@ -29,6 +29,9 @@ def main():
         go_path = os.path.join(get_user_home(), 'goPetCamera')
 
         if result == 1:
+
+            print("WiFi is connected. Proceeding with goPetCamera")
+
             # WiFi is connected, run the Go program (main)
             main_path = os.path.join(go_path, 'main')
 
@@ -38,6 +41,9 @@ def main():
             subprocess.run([main_path], text=True)
 
         else:
+
+            print("WiFi is not connected. Proceeding with BLEpi, then goPetCamera")
+
             # WiFi is not connected, run the Node.js BLE script with sudo
             blepi_path = os.path.join(os.path.dirname(__file__), "bleno_connect.js")
             subprocess.run(["sudo", "node", blepi_path], text=True, capture_output=True)
