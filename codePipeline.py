@@ -26,7 +26,7 @@ def wifi_check(callback):
 
 def main():
     def on_wifi_status_changed(result):
-        go_path = os.path.join(get_user_home(), 'goPetCamera')
+        go_path = os.path.join("/home/codyc", 'goPetCamera')
 
         if result == 1:
 
@@ -58,8 +58,8 @@ def main():
 
     wifi_check(on_wifi_status_changed)
 
-def get_user_home():
-    return os.path.expanduser("~")
+# def get_user_home():
+#     return os.path.expanduser("~")
 
 if __name__ == "__main__":
     main()
