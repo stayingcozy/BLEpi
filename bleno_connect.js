@@ -15,6 +15,9 @@ const wifiCredentials = {
 // Function to update the Notify characteristic
 let updateNotifyCharacteristic;
 
+// bool trigger for next time interval after wifi to close script
+let pastConnectWifi = false;
+
 const writeCharacteristic = new bleno.Characteristic({
   uuid: writeCharacteristicUuid,
   properties: ['write'],
@@ -64,13 +67,18 @@ const notifyCentral = (isConnected) => {
 };
 
 setInterval(() => {
+
+  if (pastConnectWifi) {
+    console.log('Device connected to WiFi.... Stopping the script...');
+    process.exit(0);
+  }
+
   // Check wifi status
   wifiCheck((result) => {
     if (result) {
       console.log('Device connected to WiFi');
       notifyCentral(true); // Notify the central (web app) that the device is connected
-      console.log('Device connected to WiFi.... Stopping the script...');
-      process.exit(0);
+      pastConnectWifi = true;
     }
     // console.log('Result:', result);
   });
