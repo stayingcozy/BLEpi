@@ -54,11 +54,11 @@ const notifyCentral = (isConnected) => {
     const data = Buffer.from([isConnected ? 1 : 0]);
     updateNotifyCharacteristic(data);
 
-    if (isConnected) {
-      // If connected to WiFi, stop the script
-      console.log('Device connected to WiFi on notify. Stopping the script...');
-      process.exit(0);
-    }
+    // if (isConnected) {
+    //   // If connected to WiFi, stop the script
+    //   console.log('Device connected to WiFi on notify. Stopping the script...');
+    //   process.exit(0);
+    // }
 
   }
 };
@@ -69,8 +69,8 @@ setInterval(() => {
     if (result) {
       console.log('Device connected to WiFi');
       notifyCentral(true); // Notify the central (web app) that the device is connected
-      // console.log('Device connected to WiFi.... Stopping the script...');
-      // process.exit(0);
+      console.log('Device connected to WiFi.... Stopping the script...');
+      process.exit(0);
     }
     // console.log('Result:', result);
   });
