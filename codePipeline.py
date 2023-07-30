@@ -36,7 +36,7 @@ def main():
             main_path = os.path.join(go_path, 'main')
 
             # Change the current working directory to where the 'main' executable is located
-            # os.chdir(os.path.dirname(go_path))
+            os.chdir(os.path.dirname(go_path))
 
             subprocess.run([main_path], text=True)
 
@@ -52,7 +52,7 @@ def main():
             main_path = os.path.join(go_path, 'main')
 
             # Change the current working directory to where the 'main' executable is located
-            # os.chdir(os.path.dirname(go_path))
+            os.chdir(os.path.dirname(go_path))
 
             subprocess.run([main_path], text=True)
 
