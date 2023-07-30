@@ -57,6 +57,13 @@ const notifyCentral = (isConnected) => {
     isConnectedToWiFi = isConnected;
     const data = Buffer.from([isConnected ? 1 : 0]);
     updateNotifyCharacteristic(data);
+
+    if (isConnected) {
+      // If connected to WiFi, stop the script
+      console.log('Device connected to WiFi. Stopping the script...');
+      process.exit(0);
+    }
+
   }
 };
 
