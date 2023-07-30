@@ -1,6 +1,6 @@
 const bleno = require('bleno');
 const wifiConfig = require('./wifiConfig');
-const wifiCheck = require('./wifiStatus');
+const { wifiCheck } = require('./wifiStatus');
 
 const myCameraTowerServiceUuid = 'fb0af608-c3ad-41bb-9aba-6d8185f45de7';
 const writeCharacteristicUuid = '0cb87266-9c1e-4e8b-a317-b742364e03b4';
@@ -11,6 +11,8 @@ const wifiCredentials = {
   psk: '',
   key_mgmt: 'WPA-PSK',
 };
+
+let isConnectedToWiFi = false;
 
 // Function to update the Notify characteristic
 let updateNotifyCharacteristic;
@@ -58,10 +60,14 @@ const notifyCentral = (isConnected) => {
 
 setInterval( () => {
   // Check wifi status 
-  wifiCheck.wifiCheck((result) => {
+  wifiCheck((result) => {
     if (result) {
       console.log('Device connected to WiFi');
       notifyCentral(true); // Notify the central (web app) that the device is connected
+      isConnectedToWiFi = true;
+    }
+    else {
+      isConnectedToWiFi = false;
     }
     // console.log('Result:', result);
   });
@@ -74,7 +80,7 @@ const myCameraTowerService = new bleno.PrimaryService({
 });
 
 bleno.on('stateChange', (state) => {
-  if (state === 'poweredOn') {
+  if (state === 'poweredOn' && !isConnectedToWiFi) {
     bleno.startAdvertising('MyCameraTower', [myCameraTowerServiceUuid]);
   } else {
     bleno.stopAdvertising();
