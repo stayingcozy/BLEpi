@@ -12,9 +12,6 @@ const wifiCredentials = {
   key_mgmt: 'WPA-PSK',
 };
 
-// Flag to track if the device is already connected to WiFi
-let isConnectedToWiFi = false;
-
 // Function to update the Notify characteristic
 let updateNotifyCharacteristic;
 
@@ -53,8 +50,7 @@ const notifyCharacteristic = new bleno.Characteristic({
 
 // Function to notify the central (web app)
 const notifyCentral = (isConnected) => {
-  if (updateNotifyCharacteristic && isConnected !== isConnectedToWiFi) {
-    isConnectedToWiFi = isConnected;
+  if (updateNotifyCharacteristic) {
     const data = Buffer.from([isConnected ? 1 : 0]);
     updateNotifyCharacteristic(data);
 
@@ -70,13 +66,12 @@ const notifyCentral = (isConnected) => {
   }
 };
 
-const wifiCheckInterval = setInterval(() => {
+setInterval(() => {
   // Check wifi status
   wifiCheck((result) => {
-    if (result && !isConnectedToWiFi) {
+    if (result) {
       console.log('Device connected to WiFi');
       notifyCentral(true); // Notify the central (web app) that the device is connected
-      clearInterval(wifiCheckInterval); // Stop the interval function calls
     }
     // console.log('Result:', result);
   });
