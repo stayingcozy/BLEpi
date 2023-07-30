@@ -54,6 +54,8 @@ def main():
             # Change the current working directory to where the 'main' executable is located
             os.chdir(os.path.dirname(go_path))
 
+            print("Now running goPetCamera")
+
             subprocess.run([main_path], text=True)
 
     wifi_check(on_wifi_status_changed)
