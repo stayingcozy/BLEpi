@@ -69,8 +69,8 @@ setInterval(() => {
     if (result) {
       console.log('Device connected to WiFi');
       notifyCentral(true); // Notify the central (web app) that the device is connected
-      console.log('Device connected to WiFi.... Stopping the script...');
-      process.exit(0);
+      // console.log('Device connected to WiFi.... Stopping the script...');
+      // process.exit(0);
     }
     // console.log('Result:', result);
   });
