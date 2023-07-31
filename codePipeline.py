@@ -42,21 +42,21 @@ def main():
 
         else:
 
-            print("WiFi is not connected. Proceeding with BLEpi, then goPetCamera")
+            print("WiFi is not connected.")
 
             # WiFi is not connected, run the Node.js BLE script with sudo
-            blepi_path = os.path.join(os.path.dirname(__file__), "bleno_connect.js")
-            subprocess.run(["sudo", "node", blepi_path], text=True, capture_output=True)
+            # blepi_path = os.path.join(os.path.dirname(__file__), "bleno_connect.js")
+            # subprocess.run(["sudo", "node", blepi_path], text=True, capture_output=True)
 
-            # When the BLE script exits, start the main Go program
-            main_path = os.path.join(go_path, 'main')
+            # # When the BLE script exits, start the main Go program
+            # main_path = os.path.join(go_path, 'main')
 
-            # Change the current working directory to where the 'main' executable is located
-            os.chdir(os.path.dirname(go_path))
+            # # Change the current working directory to where the 'main' executable is located
+            # os.chdir(os.path.dirname(go_path))
 
-            print("Now running goPetCamera command: " + main_path)
+            # print("Now running goPetCamera command: " + main_path)
 
-            subprocess.run([main_path], text=True)
+            # subprocess.run([main_path], text=True)
 
     wifi_check(on_wifi_status_changed)
 
