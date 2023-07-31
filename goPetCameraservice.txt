@@ -4,7 +4,7 @@ After=network-online.target
 
 [Service]
 Environment="HOME=/home/codyc"
-ExecStart=/usr/bin/python3 /home/codyc/BLEpi/goPetCameraPipeline.py
+ExecStart=/bin/bash -c '/usr/bin/python3 /home/codyc/BLEpi/goPetCameraPipeline.py > /h>
 
 [Install]
-WantedBy=network-online.target
+WantedBy=bluetooth.target
