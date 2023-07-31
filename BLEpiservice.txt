@@ -1,0 +1,10 @@
+[Unit]
+Description=Run code based on WiFi Status
+After=network-online.target
+
+[Service]
+Environment="HOME=/home/codyc"
+ExecStart=/usr/bin/python3 /home/codyc/BLEpi/BLEpiPipeline.py
+
+[Install]
+WantedBy=network-online.target
