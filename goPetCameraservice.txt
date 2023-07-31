@@ -1,10 +1,10 @@
 [Unit]
 Description=Run code based on WiFi Status
-After=bluetooth.target
+After=network-online.target
 
 [Service]
 Environment="HOME=/home/codyc"
 ExecStart=/usr/bin/python3 /home/codyc/BLEpi/goPetCameraPipeline.py
 
 [Install]
-WantedBy=bluetooth.target
+WantedBy=network-online.target
