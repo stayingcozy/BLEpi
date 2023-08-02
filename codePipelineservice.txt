@@ -7,4 +7,4 @@ Environment="HOME=/home/codyc"
 ExecStart=/bin/bash -c '/usr/bin/python3 /home/codyc/BLEpi/codePipeline.py > /h>
 
 [Install]
-WantedBy=network-online.target
+WantedBy=network.target
