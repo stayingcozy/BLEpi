@@ -7,4 +7,4 @@ Environment="HOME=/home/codyc"
 ExecStart=/usr/bin/python3 /home/codyc/BLEpi/BLEpiPipeline.py
 
 [Install]
-WantedBy=network.target
+WantedBy=bluetooth.target
