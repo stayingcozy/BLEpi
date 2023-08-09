@@ -4,7 +4,7 @@ After=network-online.target
 
 [Service]
 Environment="HOME=/home/codyc"
-ExecStart=/bin/bash -c '/usr/bin/python3 /home/codyc/BLEpi/codePipeline.py > /h>
+ExecStart=/usr/bin/python3 /home/codyc/BLEpi/codePipeline.py
 
 [Install]
 WantedBy=bluetooth.target
