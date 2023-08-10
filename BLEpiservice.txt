@@ -1,10 +1,11 @@
 [Unit]
 Description=Run code based on WiFi Status
-After=bluetooth.target
+After=bluetooth.target network.target
 
 [Service]
 Environment="HOME=/home/codyc"
+ExecStartPre=/bin/sleep 10
 ExecStart=/usr/bin/python3 /home/codyc/BLEpi/BLEpiPipeline.py
 
 [Install]
-WantedBy=bluetooth.target
+WantedBy=multi-user.target
