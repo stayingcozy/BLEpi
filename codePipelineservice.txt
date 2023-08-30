@@ -3,9 +3,9 @@ Description=Run code based on WiFi Status
 After=network-online.target
 
 [Service]
-Environment="HOME=/home/codyc"
+Environment="HOME=/home/neuralfetch"
 ExecStartPre=/bin/sleep 11
-ExecStart=/usr/bin/python3 /home/codyc/BLEpi/codePipeline.py
+ExecStart=/usr/bin/python3 /home/neuralfetch/BLEpi/codePipeline.py
 
 [Install]
 WantedBy=bluetooth.target
