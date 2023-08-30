@@ -4,7 +4,7 @@ After=bluetooth.target network.target
 
 [Service]
 Environment="HOME=/home/codyc"
-ExecStartPre=/bin/sleep 10
+ExecStartPre=/bin/sleep 11
 ExecStart=/usr/bin/python3 /home/codyc/BLEpi/BLEpiPipeline.py
 
 [Install]
