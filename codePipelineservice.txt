@@ -4,6 +4,7 @@ After=network-online.target
 
 [Service]
 Environment="HOME=/home/codyc"
+ExecStartPre=/bin/sleep 11
 ExecStart=/usr/bin/python3 /home/codyc/BLEpi/codePipeline.py
 
 [Install]
