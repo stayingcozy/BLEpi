@@ -26,7 +26,7 @@ def wifi_check(callback):
 
 def main():
     def on_wifi_status_changed(result):
-        go_path = "/home/codyc/goPetCamera"
+        go_path = "/home/neuralfetch/goPetCamera"
 
         if result == 1:
 
